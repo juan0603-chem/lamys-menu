@@ -1,0 +1,3994 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lamy's Heladería · Carta Digital</title>
+  <meta name="description"
+    content="Lamy's Heladería - Helados de primera calidad, waffles, copas y frutas en Palmira, Valle. ¡Date un gusto!">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chewy&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==============================================
+       CSS CUSTOM PROPERTIES
+       ============================================== */
+    :root {
+      --pink: #C75B7A;
+      --pink-light: #E8A0B5;
+      --pink-bg: #FFF0F3;
+      --brown-dark: #3D1A0B;
+      --brown: #5C3322;
+      --brown-mid: #8B6347;
+      --brown-light: #B8967A;
+      --cream: #FFF8F0;
+      --cream-dark: #F5E6DA;
+      --gold: #D4A46A;
+      --gold-light: #E8C99B;
+      --white: #FFFFFF;
+      --text: #3D1F0E;
+      --text-soft: #7A5C4A;
+
+      --font-display: 'Chewy', cursive;
+      --font-serif: 'Playfair Display', serif;
+      --font-body: 'Nunito', sans-serif;
+
+      --shadow-card: 0 4px 20px rgba(61, 26, 11, 0.08), 0 1px 4px rgba(61, 26, 11, 0.05);
+      --shadow-hover: 0 12px 35px rgba(61, 26, 11, 0.14), 0 4px 10px rgba(61, 26, 11, 0.06);
+      --shadow-img: 0 8px 25px rgba(61, 26, 11, 0.18);
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    /* ==============================================
+       RESET & BASE
+       ============================================== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: var(--pink);
+      text-decoration: none;
+    }
+
+    /* ==============================================
+       BACKGROUND TEXTURE (subtle marble feel)
+       ============================================== */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at 15% 50%, rgba(199, 91, 122, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 25%, rgba(212, 164, 106, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 90%, rgba(139, 99, 71, 0.03) 0%, transparent 50%);
+    }
+
+    /* ==============================================
+       HERO SECTION
+       ============================================== */
+    .hero {
+      margin-top: 60px;
+      position: relative;
+      width: 100%;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      z-index: 1;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background:
+        linear-gradient(180deg,
+          rgba(61, 26, 11, 0.08) 0%,
+          rgba(61, 26, 11, 0.0) 15%,
+          rgba(61, 26, 11, 0.0) 55%,
+          rgba(61, 26, 11, 0.70) 100%);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40vh;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero__logo {
+      display: none !important;
+      width: clamp(220px, 40vw, 420px);
+      margin: 0 auto 10px;
+      filter: drop-shadow(0 8px 25px rgba(61, 26, 11, 0.35));
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: var(--white);
+      text-shadow: 0 4px 25px rgba(61, 26, 11, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3);
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+
+    .hero__subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--gold-light);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      letter-spacing: 1px;
+    }
+
+    .hero__footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      background: linear-gradient(transparent, rgba(61, 26, 11, 0.75));
+      padding: 50px 20px 22px;
+      text-align: center;
+    }
+
+    .hero__info {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(255, 248, 240, 0.9);
+      letter-spacing: 0.5px;
+    }
+
+    .hero__scroll {
+      display: inline-block;
+      margin-top: 12px;
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--gold-light);
+      border-radius: 50%;
+      position: relative;
+      animation: bounce 2s infinite;
+      opacity: 0.7;
+    }
+
+    .hero__scroll::after {
+      content: '↓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--gold-light);
+      font-size: 16px;
+    }
+
+    /* ==============================================
+       NAVIGATION (sticky category pills)
+       ============================================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 248, 240, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 164, 106, 0.2);
+      padding: 12px 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav__inner {
+      display: flex;
+      gap: 8px;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      white-space: nowrap;
+    }
+
+    .nav__pill {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--brown-mid);
+      background: var(--white);
+      border: 1px solid rgba(212, 164, 106, 0.25);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .nav__pill:hover,
+    .nav__pill:focus {
+      background: var(--pink);
+      color: var(--white);
+      border-color: var(--pink);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(199, 91, 122, 0.25);
+    }
+
+    /* ==============================================
+       SECTION HEADERS
+       ============================================== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 60px 0 20px;
+    }
+
+    .section__header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section__icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .section__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--brown);
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section__title::after {
+      content: '';
+      display: block;
+      width: 80%;
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--pink), var(--gold), transparent);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    .section__subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ==============================================
+       PRODUCT CARDS
+       ============================================== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      position: relative;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(212, 164, 106, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card__img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: var(--cream-dark);
+    }
+
+    .card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card__img img {
+      transform: scale(1.06);
+    }
+
+    .card__body {
+      padding: 20px 22px 24px;
+      position: relative;
+    }
+
+    .card__name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--brown-dark);
+      margin-bottom: 8px;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+
+    .card__desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--gold-light);
+    }
+
+    .card__price {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--pink);
+      line-height: 1.4;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink-bg), rgba(232, 160, 181, 0.15));
+      padding: 6px 16px;
+      border-radius: 50px;
+    }
+    ul.card__price {
+      list-style: none;
+      margin: 0;
+      padding: 8px 16px;
+      text-align: left;
+    }
+    ul.card__price li {
+      padding: 2px 0;
+    }
+    ul.card__price li + li {
+      border-top: 1px dashed rgba(180, 80, 120, 0.2);
+      margin-top: 2px;
+      padding-top: 4px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 5;
+      background: linear-gradient(135deg, var(--pink), #d4447a);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(199, 91, 122, 0.35);
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    /* ==============================================
+       TEXT-ONLY MENU SECTIONS
+       ============================================== */
+    .text-menu {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 30px 35px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(212, 164, 106, 0.1);
+      margin-bottom: 22px;
+    }
+
+    .text-menu__cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .text-menu__col-title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--gold-light);
+    }
+
+    .text-menu__row {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .text-menu__row span:first-child {
+      flex-shrink: 0;
+    }
+
+    .text-menu__dots {
+      flex: 1;
+      border-bottom: 1px dotted var(--brown-light);
+      margin: 0 10px;
+      min-width: 20px;
+      opacity: 0.3;
+    }
+
+    .text-menu__price {
+      font-family: var(--font-display);
+      color: var(--pink);
+      flex-shrink: 0;
+      font-size: 1rem;
+      background: var(--pink-bg);
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+
+    /* ==============================================
+       FOOTER
+       ============================================== */
+    .footer {
+      background: var(--brown-dark);
+      color: var(--cream);
+      text-align: center;
+      padding: 50px 20px 30px;
+      margin-top: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 30% 50%, rgba(199, 91, 122, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(212, 164, 106, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .footer__logo {
+      width: 200px;
+      margin: 0 auto 15px;
+      filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.3));
+    }
+
+    .footer__slogan {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--pink-light);
+      margin-bottom: 20px;
+    }
+
+    .footer__divider {
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 20px;
+    }
+
+    .footer__info {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 2.2;
+      color: rgba(255, 248, 240, 0.75);
+      position: relative;
+    }
+
+    .footer__info strong {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .footer__social {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .footer__social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border: 1px solid rgba(212, 164, 106, 0.3);
+      border-radius: 50px;
+      color: var(--gold-light);
+      font-size: 0.85rem;
+      font-weight: 400;
+      transition: all 0.25s ease;
+    }
+
+    .footer__social a:hover {
+      background: var(--pink);
+      border-color: var(--pink);
+      color: var(--white);
+    }
+
+    .footer__copy {
+      margin-top: 25px;
+      font-size: 0.75rem;
+      color: rgba(255, 248, 240, 0.35);
+    }
+
+    /* ==============================================
+       ANIMATIONS
+       ============================================== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(8px);
+      }
+
+      60% {
+        transform: translateY(4px);
+      }
+    }
+
+    /* ==============================================
+       SCROLL-REVEAL SYSTEM
+       ============================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-left.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-right.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-scale.revealed {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ==============================================
+       3D CARD TILT EFFECT
+       ============================================== */
+    .card {
+      perspective: 800px;
+      transform-style: preserve-3d;
+    }
+
+    .card__inner-tilt {
+      transition: transform 0.15s ease-out;
+    }
+
+    /* ==============================================
+       ACTIVE NAV PILL
+       ============================================== */
+    .nav__pill.active {
+      background: var(--pink);
+      color: var(--white);
+      border-color: var(--pink);
+      box-shadow: 0 4px 12px rgba(199, 91, 122, 0.25);
+    }
+
+    /* ==============================================
+       SECTION TITLE UNDERLINE GROW
+       ============================================== */
+    .section__title::after {
+      transform: scaleX(0);
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .section__header.revealed .section__title::after {
+      transform: scaleX(1);
+    }
+
+    /* ==============================================
+       PARALLAX HERO
+       ============================================== */
+    .hero__bg {
+      transition: transform 0.1s linear;
+      will-change: transform;
+    }
+
+    /* ==============================================
+       IMAGE FADE-IN ON LOAD
+       ============================================== */
+    .card__img img {
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .card__img img.loaded {
+      opacity: 1;
+    }
+
+    .card:hover .card__img img.loaded {
+      transform: scale(1.06);
+    }
+
+    /* ==============================================
+       WHATSAPP PULSE + TOOLTIP
+       ============================================== */
+    .wa-float::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #25D366;
+      z-index: -1;
+      animation: waPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes waPulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1.8);
+        opacity: 0;
+      }
+    }
+
+    .wa-tooltip {
+      position: fixed;
+      bottom: 92px;
+      right: 20px;
+      z-index: 300;
+      background: var(--brown-dark);
+      color: var(--cream);
+      padding: 10px 18px;
+      border-radius: 12px 12px 4px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(10px) scale(0.9);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .wa-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* ==============================================
+       TESTIMONIALS CAROUSEL (mobile)
+       ============================================== */
+    @media (max-width: 768px) {
+      .testimonials__grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding-bottom: 15px;
+      }
+
+      .testimonials__grid::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      .testimonials__grid::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 4px;
+      }
+
+      .tcard {
+        min-width: 85vw;
+        scroll-snap-align: center;
+        flex-shrink: 0;
+      }
+    }
+
+    .tcard {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tcard:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ==============================================
+       PARTICLES CANVAS
+       ============================================== */
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ==============================================
+       ABOUT FEATURES HOVER
+       ============================================== */
+    .about__feat {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about__feat:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(61, 26, 11, 0.1);
+    }
+
+    /* ==============================================
+       RESPONSIVE
+       ============================================== */
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      .text-menu__cols {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .text-menu {
+        padding: 22px 20px;
+      }
+
+      .section {
+        padding: 45px 0 15px;
+      }
+
+      .footer__social {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .nav__pill {
+        padding: 6px 14px;
+        font-size: 0.75rem;
+      }
+
+      .card__body {
+        padding: 14px 16px 18px;
+      }
+    }
+
+    /* Scrollbar styling */
+    .nav::-webkit-scrollbar {
+      height: 0px;
+    }
+
+    /* Print */
+    @media print {
+      @page {
+        margin: 6mm;
+        size: letter landscape;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        animation: none !important;
+        transition: none !important;
+      }
+
+      body {
+        background: #FFF8F0 !important;
+        font-size: 11px !important;
+      }
+
+      body::before {
+        display: none !important;
+      }
+
+      .nav {
+        display: none !important;
+      }
+
+      .topbar {
+        display: none !important;
+      }
+
+      .about {
+        display: none !important;
+      }
+
+      .menu-divider {
+        display: none !important;
+      }
+
+      .testimonials {
+        display: none !important;
+      }
+
+      .ig-cta {
+        display: none !important;
+      }
+
+      .location {
+        display: none !important;
+      }
+
+      .wa-float {
+        display: none !important;
+      }
+
+      .wa-tooltip {
+        display: none !important;
+      }
+
+      #particles-canvas {
+        display: none !important;
+      }
+
+      .reveal, .reveal-left, .reveal-right, .reveal-scale {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .card__expand-hint {
+        display: none !important;
+      }
+
+      .card__detail {
+        display: none !important;
+      }
+
+      .card {
+        cursor: default !important;
+      }
+
+      .bg-deco__img {
+        opacity: 0.08 !important;
+        filter: blur(8px) !important;
+      }
+
+      .hero__scroll {
+        display: none !important;
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 0 !important;
+        height: auto !important;
+        display: block !important;
+        position: relative !important;
+        page-break-after: always;
+      }
+
+      .hero__bg {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: 55vh !important;
+        display: block !important;
+      }
+
+      .hero__overlay {
+        display: none !important;
+      }
+
+      .hero__content {
+        position: relative !important;
+        margin-top: 0 !important;
+        padding: 8px 20px !important;
+        background: #3D1A0B !important;
+        text-align: center !important;
+      }
+
+      .hero__title {
+        font-size: 1.8rem !important;
+        color: white !important;
+        -webkit-text-fill-color: white !important;
+      }
+
+      .hero__footer {
+        position: relative !important;
+        background: #3D1A0B !important;
+        padding: 5px 20px 8px !important;
+      }
+
+      .hero__info {
+        color: #E8C99B !important;
+        font-size: 0.7rem !important;
+      }
+
+      /* CONTAINER */
+      .container {
+        max-width: 100% !important;
+        padding: 0 8px !important;
+      }
+
+      /* SECTIONS - minimal spacing */
+      .section {
+        padding: 8px 0 2px !important;
+      }
+
+      .section__header {
+        margin-bottom: 6px !important;
+      }
+
+      .section__title {
+        font-size: 1rem !important;
+      }
+
+      .section__title::after {
+        margin: 3px auto 0 !important;
+        height: 2px !important;
+      }
+
+      .section__subtitle {
+        font-size: 0.7rem !important;
+        margin-top: 2px !important;
+      }
+
+      .section__icon {
+        font-size: 0.9rem !important;
+        margin-bottom: 0 !important;
+      }
+
+      /* GRID - 4 columns in landscape! */
+      .grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 6px !important;
+        margin-bottom: 6px !important;
+      }
+
+      /* CARDS - very compact */
+      .card {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        box-shadow: none !important;
+        border: 1px solid #e0d0c0 !important;
+        border-radius: 6px !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .card__img {
+        aspect-ratio: 4 / 3 !important;
+        max-height: 165px !important;
+      }
+
+      .card__img img {
+        transform: none !important;
+      }
+
+      .card__body {
+        padding: 5px 7px 7px !important;
+      }
+
+      .card__name {
+        font-size: 0.68rem !important;
+        margin-bottom: 2px !important;
+        line-height: 1.15 !important;
+      }
+
+      .card__desc {
+        font-size: 0.52rem !important;
+        margin-bottom: 3px !important;
+        padding-bottom: 3px !important;
+        line-height: 1.25 !important;
+      }
+
+      .card__price {
+        font-size: 0.65rem !important;
+        padding: 1px 6px !important;
+      }
+
+      .badge {
+        font-size: 0.42rem !important;
+        padding: 1px 5px !important;
+        top: 4px !important;
+        right: 4px !important;
+      }
+
+      /* TEXT MENUS - compact */
+      .text-menu {
+        box-shadow: none !important;
+        border: 1px solid #e0d0c0 !important;
+        padding: 8px 12px !important;
+        margin-bottom: 6px !important;
+        break-inside: avoid !important;
+      }
+
+      .text-menu__cols {
+        gap: 15px !important;
+      }
+
+      .text-menu__row {
+        font-size: 0.68rem !important;
+        margin-bottom: 2px !important;
+      }
+
+      .text-menu__price {
+        font-size: 0.68rem !important;
+        padding: 0px 5px !important;
+      }
+
+      .text-menu__col-title {
+        font-size: 0.75rem !important;
+        margin-bottom: 4px !important;
+        padding-bottom: 3px !important;
+      }
+
+      /* FOOTER */
+      .footer {
+        padding: 15px 15px 10px !important;
+        margin-top: 8px !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      .footer__logo {
+        width: 100px !important;
+        margin-bottom: 5px !important;
+      }
+
+      .footer__slogan {
+        font-size: 1.3rem !important;
+        margin-bottom: 8px !important;
+      }
+
+      .footer__divider {
+        margin: 0 auto 8px !important;
+      }
+
+      .footer__info {
+        font-size: 0.7rem !important;
+        line-height: 1.6 !important;
+      }
+
+      .footer__social {
+        margin-top: 8px !important;
+        gap: 8px !important;
+      }
+
+      .footer__social a {
+        padding: 5px 12px !important;
+        font-size: 0.65rem !important;
+        border: 1px solid #999 !important;
+      }
+
+      .footer__copy {
+        margin-top: 8px !important;
+        font-size: 0.55rem !important;
+      }
+    }
+
+    /* Decorative background images */
+    .bg-deco {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bg-deco__img {
+      position: absolute;
+      border-radius: 50%;
+      object-fit: cover;
+      opacity: 0.13;
+      filter: blur(6px) saturate(1.2);
+    }
+
+    /* ==============================================
+       STICKY NAVBAR
+       ============================================== */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(61, 26, 11, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 30px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .topbar__logo {
+      height: 42px;
+      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+    }
+
+    .topbar__links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .topbar__links a {
+      color: var(--cream);
+      font-size: 0.85rem;
+      font-weight: 400;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+      font-family: var(--font-body);
+    }
+
+    .topbar__links a:hover {
+      color: var(--pink-light);
+    }
+
+    .topbar__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #25D366 !important;
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .topbar__cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      color: white !important;
+    }
+
+    .topbar__hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .topbar__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ==============================================
+       ABOUT SECTION
+       ============================================== */
+    .about {
+      padding: 80px 20px;
+      background: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+
+    .about__inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about__badge {
+      display: inline-block;
+      background: var(--pink-bg);
+      color: var(--pink);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 50px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .about__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--brown);
+      margin-bottom: 20px;
+    }
+
+    .about__text {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto 35px;
+    }
+
+    .about__features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .about__feat {
+      padding: 25px 20px;
+      background: var(--cream);
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid rgba(212, 164, 106, 0.1);
+    }
+
+    .about__feat-icon {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .about__feat-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+
+    .about__feat-text {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    /* ==============================================
+       TESTIMONIALS
+       ============================================== */
+    .testimonials {
+      padding: 70px 20px;
+      background: var(--brown-dark);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(199, 91, 122, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(212, 164, 106, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .testimonials__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .testimonials__sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold-light);
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .tcard {
+      background: rgba(255, 248, 240, 0.06);
+      border: 1px solid rgba(212, 164, 106, 0.12);
+      border-radius: 16px;
+      padding: 28px 24px;
+      backdrop-filter: blur(5px);
+    }
+
+    .tcard__stars {
+      color: #FFD700;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+
+    .tcard__text {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(255, 248, 240, 0.85);
+      line-height: 1.6;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+
+    .tcard__author {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    /* ==============================================
+       INSTAGRAM CTA
+       ============================================== */
+    .ig-cta {
+      padding: 60px 20px;
+      background: linear-gradient(135deg, var(--pink-bg) 0%, var(--cream) 50%, rgba(232, 160, 181, 0.1) 100%);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ig-cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      color: var(--brown);
+      margin-bottom: 10px;
+    }
+
+    .ig-cta__text {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      margin-bottom: 25px;
+    }
+
+    .ig-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #833AB4, #E1306C, #F77737);
+      color: white;
+      padding: 14px 35px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(225, 48, 108, 0.25);
+    }
+
+    .ig-cta__btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(225, 48, 108, 0.35);
+      color: white;
+    }
+
+    /* ==============================================
+       LOCATION & HOURS
+       ============================================== */
+    .location {
+      padding: 70px 20px;
+      background: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+
+    .location__inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .location__map {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(61, 26, 11, 0.1);
+      border: 3px solid var(--cream-dark);
+      aspect-ratio: 4/3;
+    }
+
+    .location__map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .location__info {
+      padding: 10px 0;
+    }
+
+    .location__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+      color: var(--brown);
+      margin-bottom: 20px;
+    }
+
+    .location__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .location__icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--pink-bg);
+      border-radius: 12px;
+    }
+
+    .location__label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--brown-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+
+    .location__value {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .location__wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      background: #25D366;
+      color: white;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
+    }
+
+    .location__wa-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+      color: white;
+    }
+
+    /* ==============================================
+       FLOATING WHATSAPP BUTTON
+       ============================================== */
+    .wa-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 300;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      animation: waFloat 3s ease-in-out infinite;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+    }
+
+    .wa-float svg {
+      width: 32px;
+      height: 32px;
+      fill: white;
+    }
+
+    @keyframes waFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* ==============================================
+       MENU DIVIDER (between about and menu)
+       ============================================== */
+    .menu-divider {
+      text-align: center;
+      padding: 50px 20px 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-divider__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      color: var(--brown);
+      margin-bottom: 5px;
+    }
+
+    .menu-divider__sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-soft);
+    }
+
+    .menu-divider__line {
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, var(--pink), var(--gold));
+      margin: 12px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ==============================================
+       RESPONSIVE ADDITIONS
+       ============================================== */
+    @media (max-width: 768px) {
+      .topbar__links {
+        display: none;
+      }
+
+      .topbar__hamburger {
+        display: block;
+      }
+
+      .topbar__links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(61, 26, 11, 0.98);
+        padding: 20px;
+        gap: 15px;
+      }
+
+      .about__features {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .location__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        margin-top: 60px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .hero {
+        margin-top: 60px;
+      }
+    }
+
+
+    /* ==============================================
+       EXPANDABLE CARD DETAIL
+       ============================================== */
+    .card {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .card__expand-hint {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      font-size: 0.65rem;
+      color: var(--brown-light);
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      font-family: var(--font-body);
+    }
+
+    .card:hover .card__expand-hint {
+      opacity: 1;
+      color: var(--pink);
+    }
+
+    .card__detail {
+      display: none;
+      padding: 0 20px 22px;
+      border-top: 1px dashed var(--gold-light);
+      margin-top: 5px;
+      animation: slideDown 0.35s ease;
+    }
+
+    .card.expanded .card__detail {
+      display: block;
+    }
+
+    .card.expanded .card__expand-hint span {
+      transform: rotate(180deg);
+      display: inline-block;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        max-height: 0;
+      }
+
+      to {
+        opacity: 1;
+        max-height: 500px;
+      }
+    }
+
+    .detail__text {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      line-height: 1.65;
+      margin: 14px 0;
+      font-style: italic;
+    }
+
+    .detail__section-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      color: var(--brown);
+      margin-bottom: 8px;
+      margin-top: 14px;
+    }
+
+    .detail__ingredients {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 5px;
+    }
+
+    .detail__tag {
+      display: inline-block;
+      background: var(--cream-dark);
+      color: var(--brown-mid);
+      font-size: 0.72rem;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-weight: 400;
+      border: 1px solid rgba(212, 164, 106, 0.15);
+    }
+
+    .detail__flavors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .detail__flavor {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: linear-gradient(135deg, var(--pink-bg), rgba(232, 160, 181, 0.2));
+      color: var(--pink);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 50px;
+      border: 1px solid rgba(199, 91, 122, 0.12);
+    }
+
+    .detail__flavor::before {
+      content: '🍦';
+      font-size: 0.7rem;
+    }
+    /* ==============================================
+       LOADING SPLASH SCREEN
+       ============================================== */
+    .splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: var(--brown-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .splash.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .splash__icon {
+      font-size: 4rem;
+      animation: splashBounce 0.8s ease-in-out infinite alternate;
+    }
+
+    .splash__text {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-top: 15px;
+      letter-spacing: 3px;
+    }
+
+    .splash__bar {
+      width: 120px;
+      height: 4px;
+      background: rgba(255, 248, 240, 0.15);
+      border-radius: 4px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .splash__bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--gold));
+      border-radius: 4px;
+      animation: splashLoad 1.5s ease-in-out forwards;
+    }
+
+    @keyframes splashBounce {
+      from { transform: translateY(0) rotate(0deg); }
+      to { transform: translateY(-15px) rotate(10deg); }
+    }
+
+    @keyframes splashLoad {
+      0% { width: 0%; }
+      50% { width: 70%; }
+      100% { width: 100%; }
+    }
+
+    /* ==============================================
+       DARK MODE
+       ============================================== */
+    .dark-toggle {
+      position: fixed;
+      top: 75px;
+      right: 20px;
+      z-index: 250;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid rgba(212, 164, 106, 0.3);
+      background: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .dark-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark-mode {
+      --cream: #1a1a2e;
+      --cream-dark: #16213e;
+      --white: #0f3460;
+      --text: #e0d6cc;
+      --text-soft: #b8a99a;
+      --brown-dark: #0a0a14;
+      --brown: #d4a46a;
+      --brown-mid: #c4956a;
+      --brown-light: #a88060;
+      --pink-bg: rgba(199, 91, 122, 0.15);
+    }
+
+    body.dark-mode .topbar {
+      background: rgba(10, 10, 20, 0.95);
+    }
+
+    body.dark-mode .nav {
+      background: rgba(26, 26, 46, 0.95);
+    }
+
+    body.dark-mode .card {
+      border-color: rgba(212, 164, 106, 0.15);
+    }
+
+    body.dark-mode .text-menu {
+      border-color: rgba(212, 164, 106, 0.15);
+    }
+
+    body.dark-mode .dark-toggle {
+      background: var(--brown-dark);
+      border-color: rgba(212, 164, 106, 0.3);
+    }
+
+    body.dark-mode .about {
+      background: #16213e;
+    }
+
+    body.dark-mode .location {
+      background: #16213e;
+    }
+
+    body.dark-mode .ig-cta {
+      background: linear-gradient(135deg, rgba(199, 91, 122, 0.1) 0%, #1a1a2e 50%, rgba(199, 91, 122, 0.05) 100%);
+    }
+
+    /* ==============================================
+       IMAGE LIGHTBOX
+       ============================================== */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      cursor: zoom-out;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox__img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      transform: scale(0.85);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .lightbox.active .lightbox__img {
+      transform: scale(1);
+    }
+
+    .lightbox__close {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .lightbox__close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .lightbox__caption {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+    }
+
+    /* ==============================================
+       SCROLL TO TOP BUTTON
+       ============================================== */
+    .scroll-top {
+      position: fixed;
+      bottom: 100px;
+      right: 25px;
+      z-index: 250;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--gold));
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 20px rgba(199, 91, 122, 0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+      pointer-events: none;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(199, 91, 122, 0.45);
+    }
+
+    /* ==============================================
+       GLOWING CARD HOVER + SHINE
+       ============================================== */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: calc(var(--radius) + 2px);
+      background: linear-gradient(135deg, var(--pink), var(--gold), var(--pink));
+      background-size: 300% 300%;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+      animation: glowRotate 3s ease infinite;
+    }
+
+    @keyframes glowRotate {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card__shine {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      z-index: 10;
+      pointer-events: none;
+      transition: none;
+    }
+
+    .card:hover .card__shine {
+      animation: cardShine 0.8s ease forwards;
+    }
+
+    @keyframes cardShine {
+      from { left: -100%; }
+      to { left: 150%; }
+    }
+
+    /* ==============================================
+       HERO TYPEWRITER
+       ============================================== */
+    .hero__typewriter {
+      display: inline;
+      border-right: 3px solid var(--gold-light);
+      animation: blink 0.8s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .hero__subtitle .typed-done {
+      border-right: none;
+    }
+
+    /* ==============================================
+       CARD STAGGER
+       ============================================== */
+    .card.reveal {
+      transition-delay: calc(var(--stagger, 0) * 0.1s);
+    }
+
+    /* ==============================================
+       PRINT: hide new elements
+       ============================================== */
+    @media print {
+      .splash, .dark-toggle, .lightbox, .scroll-top, .card__shine {
+        display: none !important;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Loading Splash Screen -->
+  <div class="splash" id="splash">
+    <div class="splash__icon">🍦</div>
+    <div class="splash__text">Lamy's</div>
+    <div class="splash__bar"><div class="splash__bar-fill"></div></div>
+  </div>
+
+  <!-- Dark Mode Toggle -->
+  <button class="dark-toggle" id="dark-toggle" aria-label="Cambiar tema">🌙</button>
+
+  <!-- Image Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" aria-label="Cerrar">✕</button>
+    <img class="lightbox__img" src="" alt="">
+    <div class="lightbox__caption"></div>
+  </div>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scroll-top" aria-label="Volver arriba">↑</button>
+
+  <!-- Particles canvas -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- WhatsApp tooltip -->
+  <div class="wa-tooltip" id="wa-tooltip">Haz tu pedido!</div>
+
+  <!-- Decorative background images -->
+  <div class="bg-deco" aria-hidden="true">
+    <img
+      src="images/image_0.jpg"
+      class="bg-deco__img" style="top:5%;left:-3%;width:280px;height:280px;transform:rotate(-15deg);" alt="">
+    <img
+      src="images/image_1.jpg"
+      class="bg-deco__img" style="top:15%;right:-2%;width:260px;height:260px;transform:rotate(10deg);" alt="">
+    <img
+      src="images/image_2.jpg"
+      class="bg-deco__img" style="top:35%;left:5%;width:240px;height:240px;transform:rotate(-8deg);" alt="">
+    <img
+      src="images/image_3.jpg"
+      class="bg-deco__img" style="top:55%;right:3%;width:270px;height:270px;transform:rotate(12deg);" alt="">
+    <img
+      src="images/image_4.jpg"
+      class="bg-deco__img" style="top:70%;left:-2%;width:250px;height:250px;transform:rotate(-20deg);" alt="">
+    <img
+      src="images/image_5.jpg"
+      class="bg-deco__img" style="top:85%;right:5%;width:230px;height:230px;transform:rotate(5deg);" alt="">
+  </div>
+
+
+
+  <!-- TOPBAR NAVBAR -->
+  <nav class="topbar" id="topbar">
+    <a href="#top"><img
+        src="images/lamy_s.png"
+        alt="Lamy's" class="topbar__logo"></a>
+    <button class="topbar__hamburger" onclick="document.querySelector('.topbar__links').classList.toggle('active')"
+      aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="topbar__links">
+      <li><a href="#about">Nosotros</a></li>
+      <li><a href="#menu">Menú</a></li>
+      <li><a href="#reviews">Reseñas</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a href="https://wa.me/573104390198?text=Hola%20Lamy%27s!%20Quiero%20hacer%20un%20pedido" target="_blank"
+          class="topbar__cta">💬 WhatsApp</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================
+       HERO / PORTADA
+       ============================================ -->
+  <header class="hero" id="top">
+    <img
+      src="images/lamy_s_heladeria.jpg"
+      alt="Lamy's Heladería" class="hero__bg">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <img
+        src="images/lamy_s_heladeria.png"
+        alt="Lamy's Heladería" class="hero__logo">
+      <h1 class="hero__title">¡Date un gusto!</h1>
+    </div>
+    <div class="hero__footer">
+      <p class="hero__info">
+        📍 Calle 67A #25-71, Barrio Alameda, Palmira &nbsp;·&nbsp;
+        📱 +57 310 439 0198 &nbsp;·&nbsp;
+        📸 @lamysheladeria
+      </p>
+      <a href="#menu" class="hero__scroll" aria-label="Ver menú"></a>
+    </div>
+  </header>
+
+
+  <!-- ============================================
+       ABOUT / NOSOTROS
+       ============================================ -->
+  <section class="about" id="about">
+    <div class="about__inner">
+      <span class="about__badge">Desde Palmira con amor</span>
+      <h2 class="about__title">Bienvenidos a Lamy's Heladería</h2>
+      <p class="about__text">
+        Somos una heladería artesanal en el corazón de Palmira, Valle del Cauca.
+        Creamos experiencias dulces con ingredientes frescos, frutas de la región
+        y mucho amor en cada preparación. Desde nuestras copas de helado hasta
+        nuestros waffles artesanales, cada producto está hecho para hacerte sonreír.
+      </p>
+      <div class="about__features">
+        <div class="about__feat">
+          <div class="about__feat-icon">🍦</div>
+          <div class="about__feat-title">Helado Ae primera calidad</div>
+          <div class="about__feat-text">Elaboramos nuestros helados con ingredientes naturales y recetas propias</div>
+        </div>
+        <div class="about__feat">
+          <div class="about__feat-icon">🍓</div>
+          <div class="about__feat-title">Frutas Frescas</div>
+          <div class="about__feat-text">Seleccionamos las mejores frutas de la región del Valle del Cauca</div>
+        </div>
+        <div class="about__feat">
+          <div class="about__feat-icon">💕</div>
+          <div class="about__feat-title">Hecho con Amor</div>
+          <div class="about__feat-text">Cada copa, waffle y postre es preparado al momento con dedicación</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU DIVIDER -->
+  <div class="menu-divider">
+    <h2 class="menu-divider__title">Nuestro Menú</h2>
+    <p class="menu-divider__sub">Descubre todos nuestros productos</p>
+    <div class="menu-divider__line"></div>
+  </div>
+
+  <!-- ============================================
+       NAVIGATION (Category Pills)
+       ============================================ -->
+  <nav class="nav" id="menu">
+    <div class="nav__inner">
+      <a href="#copas" class="nav__pill">🍨 Copas</a>
+      <a href="#sundaes" class="nav__pill">⭐ Estrellas, Splits & Malteadas</a>
+      <a href="#waffles" class="nav__pill">🧇 Waffles</a>
+      <a href="#especiales" class="nav__pill">✨ Especiales</a>
+      <a href="#ninos" class="nav__pill">🎉 Pequeños</a>
+      <a href="#frutas" class="nav__pill">🍓 Frutas</a>
+      <a href="#bebidas" class="nav__pill">🍹 Bebidas</a>
+      <a href="#conos" class="nav__pill">🍦 Conos</a>
+      <a href="#adicionales" class="nav__pill">➕ Adicionales</a>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       COPAS DE HELADO
+       ============================================ -->
+  <section class="section" id="copas">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__icon">🍨</span>
+        <h2 class="section__title">Copas de Helado</h2>
+        <p class="section__subtitle">Nuestras creaciones más deliciosas</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <span class="badge">★ Popular</span>
+          <div class="card__img">
+            <img
+              src="images/copa_explosion_de_chocolate.png"
+              alt="Copa Explosión de Chocolate" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Copa Explosión de Chocolate</h3>
+            <p class="card__desc">Dos sabores de helado (chocolate y vainilla), salsa de chocolate Hershey's, trocitos
+              de brownie, chantilly, chips de chocolate y fresa.</p>
+            <p class="card__price">$13.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Una explosión de sabor para los amantes del chocolate. Dos generosas bolas de helado
+              bañadas en salsa caliente de chocolate Hershey's, acompañadas de trocitos de brownie casero, crema
+              chantilly, chips de chocolate y coronada con una fresa fresca.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (2 sabores)</span><span
+                class="detail__tag">Salsa chocolate Hershey's</span><span class="detail__tag">Brownie casero</span><span
+                class="detail__tag">Chantilly</span><span class="detail__tag">Chips de chocolate</span><span
+                class="detail__tag">Fresa</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Chocolate</span><span
+                class="detail__flavor">Brownie</span><span class="detail__flavor">Vainilla</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/copa_queso.png"
+              alt="Copa Queso" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Copa Queso</h3>
+            <p class="card__desc">Dos sabores de helado, queso rallado, mermelada de mora artesanal, chantilly y
+              barquillo.</p>
+            <p class="card__price">$13.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">La combinación colombiana por excelencia: helado de primera calidad con abundante queso
+              rallado y nuestra mermelada de mora hecha en casa. Terminada con un copo de chantilly y crujiente
+              barquillo. El balance perfecto entre dulce y salado.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (2 sabores)</span><span
+                class="detail__tag">Queso rallado</span><span class="detail__tag">Mermelada de mora
+                artesanal</span><span class="detail__tag">Chantilly</span><span class="detail__tag">Barquillo</span>
+            </div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Vainilla</span><span
+                class="detail__flavor">Fresa</span><span class="detail__flavor">Caramelo</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+          <span class="badge">🥭 Tropical</span>
+          <div class="card__img">
+            <img
+              src="images/maracumango.png"
+              alt="Maracumango" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Maracumango</h3>
+            <p class="card__desc">Dos sabores de helado (sugeridos vainilla y maracuyá), salsa artesanal de frutos
+              amarillos, crema de la casa, trocitos de mango, maracuyá y galletas Bridge.</p>
+            <p class="card__price">$13.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Un viaje tropical en cada cucharada. Helado cremoso cubierto con nuestra salsa
+              artesanal de frutos amarillos, trocitos de mango fresco, pulpa de maracuyá, crema de la casa y galletas
+              Bridge crujientes. Fresco, vibrante y adictivo.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (2 sabores)</span><span
+                class="detail__tag">Salsa de frutos amarillos</span><span class="detail__tag">Crema de la
+                casa</span><span class="detail__tag">Mango fresco</span><span class="detail__tag">Maracuyá</span><span
+                class="detail__tag">Galletas Bridge</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Yogurt de Maracuyá</span><span
+                class="detail__flavor">Vainilla</span><span class="detail__flavor">Verano Tropical</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/copa_frutos_rojos.png"
+              alt="Copa Frutos Rojos" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Copa Frutos Rojos</h3>
+            <p class="card__desc">Dos sabores de helado (sugeridos vainilla, fresa o frutos del bosque), mermelada de
+              frutos rojos, chantilly, crema de la casa, cerezas y barquillo.</p>
+            <p class="card__price">$12.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Elegante y llena de sabor. Dos bolas de helado servidas en copa martini, bañadas en
+              mermelada artesanal de frutos rojos, con crema de la casa, cerezas y un barquillo decorativo. Un clásico
+              que nunca falla.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (2 sabores)</span><span
+                class="detail__tag">Mermelada de frutos rojos</span><span class="detail__tag">Chantilly</span><span
+                class="detail__tag">Crema de la casa</span><span class="detail__tag">Cerezas</span><span
+                class="detail__tag">Barquillo</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Fresa</span><span
+                class="detail__flavor">Vainilla</span><span class="detail__flavor">Yogurt de Maracuyá</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/copa_tropicalia.png"
+              alt="Copa Tropicalia" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Copa Tropicalia</h3>
+            <p class="card__desc">Un sabor de helado con frutas tropicales: banano, papaya, kiwi, manzana verde, fresa,
+              piña caramelizada y maracuyá.</p>
+            <p class="card__price">$10.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">La copa más frutal de nuestro menú. Una bola de helado rodeada de un festival de
+              frutas tropicales frescas: banano, papaya, kiwi, manzana verde, fresa, piña caramelizada y maracuyá. Pura
+              frescura natural.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (1 sabor)</span><span
+                class="detail__tag">Banano</span><span class="detail__tag">Papaya</span><span
+                class="detail__tag">Kiwi</span><span class="detail__tag">Manzana verde</span><span
+                class="detail__tag">Fresa</span><span class="detail__tag">Piña caramelizada</span><span
+                class="detail__tag">Maracuyá</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Verano Tropical</span><span
+                class="detail__flavor">Yogurt de Maracuyá</span><span class="detail__flavor">Vainilla</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+          <span class="badge">🌶️ Picante</span>
+          <div class="card__img">
+            <img
+              src="images/copa_acida.png"
+              alt="Copa Ácida" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Copa Ácida</h3>
+            <p class="card__desc">Dos sabores de helado (sugeridos vainilla y maracuyá), limón, pimienta, sal, tajín,
+              manzana verde y barquillo.</p>
+            <p class="card__price">$10.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Para los aventureros del sabor. Helado cremoso con un toque ácido de limón, el
+              picante sutil del tajín, pimienta, sal y manzana verde crujiente. Una experiencia de sabores que despierta
+              todos los sentidos.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (2 sabores)</span><span
+                class="detail__tag">Limón</span><span class="detail__tag">Tajín</span><span
+                class="detail__tag">Pimienta</span><span class="detail__tag">Sal</span><span class="detail__tag">Manzana
+                verde</span><span class="detail__tag">Barquillo</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Yogurt de Maracuyá</span><span
+                class="detail__flavor">Vainilla</span><span class="detail__flavor">Verano Tropical</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ESTRELLAS & BANANA SPLITS
+       ============================================ -->
+  <section class="section" id="sundaes">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__icon">⭐</span>
+        <h2 class="section__title">Estrellas, Splits & Malteadas</h2>
+        <p class="section__subtitle">Los clásicos que nunca fallan</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/estrellas.png"
+              alt="Estrellas" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Estrellas</h3>
+            <p class="card__desc">Servida en cono waffle abierto con salsa de frutos rojos, chocolate Hershey's,
+              chantilly, cereza y barquillo.</p>
+            <ul class="card__price"><li>2 sabores $8.500</li><li>3 sabores $11.000</li><li>+Frutas $13.000</li><li>+Queso $13.000</li></ul>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Nuestra presentación estrella. Helado de primera calidad servido dentro de un cono waffle
+              abierto en forma de estrella, bañado con salsa de frutos rojos y chocolate Hershey's, decorado con
+              chantilly, cereza y barquillo.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (2-3 sabores)</span><span
+                class="detail__tag">Cono waffle artesanal</span><span class="detail__tag">Salsa de frutos
+                rojos</span><span class="detail__tag">Salsa chocolate Hershey's</span><span
+                class="detail__tag">Chantilly</span><span class="detail__tag">Cereza</span><span
+                class="detail__tag">Barquillo</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Fresa</span><span
+                class="detail__flavor">Chocolate</span><span class="detail__flavor">Vainilla</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/banana_split_tradicional.png"
+              alt="Banana Split Tradicional" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Banana Split Tradicional</h3>
+            <p class="card__desc">Tres sabores de helado, banano, chantilly, cerezas, salsa de frutos rojos y salsa de
+              chocolate Hershey's.</p>
+            <p class="card__price">$14.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">El clásico americano con toque Lamy's. Tres bolas de helado sobre banano fresco,
+              bañadas en salsa de frutos rojos y chocolate Hershey's, coronadas con chantilly y cerezas. Generoso,
+              colorido e irresistible.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (3 sabores)</span><span
+                class="detail__tag">Banano</span><span class="detail__tag">Chantilly</span><span
+                class="detail__tag">Cerezas</span><span class="detail__tag">Salsa de frutos rojos</span><span
+                class="detail__tag">Salsa chocolate Hershey's</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Chocolate</span><span
+                class="detail__flavor">Fresa</span><span class="detail__flavor">Vainilla</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+          <span class="badge">👑 Premium</span>
+          <div class="card__img">
+            <img
+              src="images/banana_split_super.png"
+              alt="Banana Split Super" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Banana Split Super</h3>
+            <p class="card__desc">Tres sabores de helado, banano, crema de la casa, queso, cereza, mermelada de frutos
+              rojos, salsa de chocolate Hershey's y barquillos.</p>
+            <p class="card__price">$16.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">El banana split llevado al máximo. Todo lo del tradicional más crema de la casa,
+              queso rallado, mermelada de frutos rojos y barquillos crujientes. La versión premium para quienes quieren
+              la experiencia completa.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (3 sabores)</span><span
+                class="detail__tag">Banano</span><span class="detail__tag">Crema de la casa</span><span
+                class="detail__tag">Queso</span><span class="detail__tag">Cereza</span><span
+                class="detail__tag">Mermelada de frutos rojos</span><span class="detail__tag">Salsa chocolate
+                Hershey's</span><span class="detail__tag">Barquillos</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Chocolate</span><span
+                class="detail__flavor">Fresa</span><span class="detail__flavor">Vainilla</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       WAFFLES
+       ============================================ -->
+  <section class="section" id="waffles">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__icon">🧇</span>
+        <h2 class="section__title">Waffles</h2>
+        <p class="section__subtitle">Crujientes, calientes e irresistibles</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <span class="badge">🇨🇴 Único</span>
+          <div class="card__img">
+            <img
+              src="images/wafflebono.png"
+              alt="Wafflebono" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Wafflebono</h3>
+            <p class="card__desc">Waffle de pan de bono con jalea de guayaba y arequipe. Pídelo con helado de vainilla o
+              café negro.</p>
+            <p class="card__price">$14.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Nuestra creación 100% colombiana. Un waffle hecho con masa de pan de bono —
+              crujiente por fuera, suave por dentro — acompañado de jalea de guayaba artesanal y arequipe. Pídelo con
+              helado de vainilla o un café negro para la combinación perfecta.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Waffle de pan de bono</span><span
+                class="detail__tag">Jalea de guayaba</span><span class="detail__tag">Arequipe</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Vainilla</span><span
+                class="detail__flavor">Capuccino</span><span class="detail__flavor">Caramelo</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/waffle_chocobanana.png"
+              alt="Waffle Chocobanana" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Waffle Chocobanana</h3>
+            <p class="card__desc">Waffle con un sabor de helado, salsa de chocolate Hershey's y banano.</p>
+            <p class="card__price">$14.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">El clásico que enamora. Nuestro waffle artesanal dorado y crujiente, cubierto con
+              rodajas de banano fresco, una generosa bola de helado y salsa de chocolate Hershey's caliente. Simple,
+              delicioso, perfecto.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Waffle artesanal</span><span
+                class="detail__tag">Helado (1 sabor)</span><span class="detail__tag">Banano</span><span
+                class="detail__tag">Salsa chocolate Hershey's</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Chocolate</span><span
+                class="detail__flavor">Brownie</span><span class="detail__flavor">Vainilla</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/waffle_frutos_amarillos.png"
+              alt="Waffle Frutos Amarillos" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Waffle Frutos Amarillos</h3>
+            <p class="card__desc">Un sabor de helado (sugeridos maracuyá, vainilla o verano tropical), salsa de frutos
+              amarillos, crema de la casa, trocitos de mango y maracuyá.</p>
+            <p class="card__price">$14.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Tropical y vibrante. Waffle artesanal cubierto con nuestra salsa de frutos
+              amarillos, crema de la casa, trocitos de mango fresco, maracuyá y una bola de helado. Los colores del
+              trópico en tu plato.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Waffle artesanal</span><span
+                class="detail__tag">Helado (1 sabor)</span><span class="detail__tag">Salsa de frutos
+                amarillos</span><span class="detail__tag">Crema de la casa</span><span class="detail__tag">Mango
+                fresco</span><span class="detail__tag">Maracuyá</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Yogurt de Maracuyá</span><span
+                class="detail__flavor">Vainilla</span><span class="detail__flavor">Verano Tropical</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/waffle_frutos_rojos.png"
+              alt="Waffle Frutos Rojos" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Waffle Frutos Rojos</h3>
+            <p class="card__desc">Un sabor de helado (sugeridos frutos del bosque o fresa), crema de la casa, mermelada
+              de frutos rojos, fresas y cerezas.</p>
+            <p class="card__price">$14.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Romántico y delicioso. Waffle artesanal bañado en crema de la casa y mermelada de
+              frutos rojos, decorado con fresas frescas cortadas, cerezas y una bola de helado. Los tonos rosados que
+              enamoran.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Waffle artesanal</span><span
+                class="detail__tag">Helado (1 sabor)</span><span class="detail__tag">Crema de la casa</span><span
+                class="detail__tag">Mermelada de frutos rojos</span><span class="detail__tag">Fresas</span><span
+                class="detail__tag">Cerezas</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Fresa</span><span
+                class="detail__flavor">Vainilla</span><span class="detail__flavor">Yogurt de Maracuyá</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ESPECIALES
+       ============================================ -->
+  <section class="section" id="especiales">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__icon">✨</span>
+        <h2 class="section__title">Especiales</h2>
+        <p class="section__subtitle">Para momentos especiales</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/brownie_con_helado.png"
+              alt="Brownie con Helado" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Brownie con Helado</h3>
+            <p class="card__desc">Un sabor de helado, brownie, salsa de chocolate Hershey's, chantilly, cereza y
+              barquillos de chocolate.</p>
+            <p class="card__price">$12.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Para los chocoadictos. Un brownie casero caliente y jugoso, coronado con una bola de
+              helado que se derrite lentamente, salsa de chocolate Hershey's, chantilly, cereza y barquillos de
+              chocolate. El contraste caliente-frío que te hace cerrar los ojos de placer.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Brownie casero</span><span
+                class="detail__tag">Helado (1 sabor)</span><span class="detail__tag">Salsa chocolate
+                Hershey's</span><span class="detail__tag">Chantilly</span><span class="detail__tag">Cereza</span><span
+                class="detail__tag">Barquillos de chocolate</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Chocolate</span><span
+                class="detail__flavor">Brownie</span><span class="detail__flavor">Vainilla</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+          <span class="badge">🏆 Favorita</span>
+          <div class="card__img">
+            <img
+              src="images/ensalada_de_frutas.png"
+              alt="Ensalada de Frutas" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Ensalada de Frutas</h3>
+            <p class="card__desc">Fruta recién cortada (papaya, banano, mango, piña caramelizada, duraznos, manzana
+              verde, fresa, uvas), crema de la casa, queso y barquillos.</p>
+            <ul class="card__price"><li>Grande $20.000</li><li>Mediana $16.000</li><li>Pequeña $12.000</li></ul>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Nuestra joya de la corona. Un bowl generoso de fruta fresca recién cortada del día —
+              papaya, banano, mango, piña caramelizada, duraznos, manzana verde, fresa y uvas — cubierta con crema de la
+              casa, queso rallado y barquillos crujientes. Disponible en tres tamaños.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Papaya</span><span
+                class="detail__tag">Banano</span><span class="detail__tag">Mango</span><span class="detail__tag">Piña
+                caramelizada</span><span class="detail__tag">Duraznos</span><span class="detail__tag">Manzana
+                verde</span><span class="detail__tag">Fresa</span><span class="detail__tag">Uvas</span><span
+                class="detail__tag">Crema de la casa</span><span class="detail__tag">Queso</span><span
+                class="detail__tag">Barquillos</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Verano Tropical</span><span
+                class="detail__flavor">Vainilla</span><span class="detail__flavor">Yogurt de Maracuyá</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PARA LOS PEQUEÑOS
+       ============================================ -->
+  <section class="section" id="ninos">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__icon">🎉</span>
+        <h2 class="section__title">Para los Pequeños</h2>
+        <p class="section__subtitle">¡Diversión deliciosa!</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/tortuga.png"
+              alt="Tortuga 🐢" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Tortuga 🐢</h3>
+            <p class="card__desc">Dos sabores de helado, galleta, gomitas, chantilly, salsa de frutos rojos y kiwi o
+              fresa.</p>
+            <p class="card__price">$9.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">¡La favorita de los pequeños! Dos bolas de helado decoradas como una tortuga
+              adorable con galleta waffle como caparazón, gomitas como patitas, salsa de frutos rojos, kiwi o fresa, y
+              chantilly. Tan linda que da pena comérsela... pero tan rica que no podrás resistirte.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (2 sabores)</span><span
+                class="detail__tag">Galleta waffle</span><span class="detail__tag">Gomitas</span><span
+                class="detail__tag">Chantilly</span><span class="detail__tag">Salsa de frutos rojos</span><span
+                class="detail__tag">Kiwi o fresa</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Fresa</span><span
+                class="detail__flavor">Vainilla</span><span class="detail__flavor">Verano Tropical</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/gusanito.png"
+              alt="Gusanito 🐛" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Gusanito 🐛</h3>
+            <p class="card__desc">Tres sabores de helado, chantilly, gomitas, chips de chocolate y pepitas de colores.
+            </p>
+            <p class="card__price">$10.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">¡Colorido y divertido! Tres bolas de helado en fila formando un simpático gusanito,
+              decorado con gomitas, chips de chocolate como ojitos, pepitas de colores y chantilly. Los niños lo aman y
+              los adultos también.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (3 sabores)</span><span
+                class="detail__tag">Chantilly</span><span class="detail__tag">Gomitas</span><span
+                class="detail__tag">Chips de chocolate</span><span class="detail__tag">Pepitas de colores</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Vainilla</span><span
+                class="detail__flavor">Fresa</span><span class="detail__flavor">Chocolate</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/cerdito.png"
+              alt="Cerdito 🐷" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Cerdito 🐷</h3>
+            <p class="card__desc">Un sabor de helado, banano, chantilly, pepitas de colores, masmelos y chips de
+              chocolate.</p>
+            <p class="card__price">$7.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">¡El más tierno del menú! Una bola de helado rosa decorada con masmelos como orejas y
+              nariz, chips de chocolate como ojitos, sobre una base de banano con chantilly y pepitas de colores.
+              Perfecto para los más pequeños de la casa.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado (1 sabor)</span><span
+                class="detail__tag">Banano</span><span class="detail__tag">Chantilly</span><span
+                class="detail__tag">Pepitas de colores</span><span class="detail__tag">Masmelos</span><span
+                class="detail__tag">Chips de chocolate</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Fresa</span><span
+                class="detail__flavor">Vainilla</span><span class="detail__flavor">Caramelo</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MALTEADAS
+       ============================================ -->
+
+
+  <!-- ============================================
+       FRUTAS & CREMAS
+       ============================================ -->
+  <section class="section" id="frutas">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__icon">🍓</span>
+        <h2 class="section__title">Frutas & Cremas</h2>
+        <p class="section__subtitle">Frescura natural con un toque dulce</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/fresas_con_crema_y_queso.jpg"
+              alt="Fresas con Crema y Queso" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Fresas con Crema y Queso</h3>
+            <p class="card__desc">Crema de la casa, mermelada artesanal de frutos rojos, fresas y queso.</p>
+            <p class="card__price">$10.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Un clásico colombiano que nunca pasa de moda. Fresas frescas y jugosas sobre nuestra
+              crema de la casa, con mermelada artesanal de frutos rojos y queso rallado. El balance perfecto entre
+              dulce, ácido y salado.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Fresas frescas</span><span
+                class="detail__tag">Crema de la casa</span><span class="detail__tag">Mermelada de frutos
+                rojos</span><span class="detail__tag">Queso rallado</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/duraznos_con_crema_y_queso.jpg"
+              alt="Duraznos con Crema y Queso" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Duraznos con Crema y Queso</h3>
+            <p class="card__desc">Crema de la casa, duraznos, salsa de frutos amarillos y queso.</p>
+            <p class="card__price">$11.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">La versión dorada del clásico. Duraznos jugosos bañados en nuestra crema de la casa
+              y salsa de frutos amarillos, con queso rallado. Suave, dulce y reconfortante.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Duraznos</span><span class="detail__tag">Crema de
+                la casa</span><span class="detail__tag">Salsa de frutos amarillos</span><span class="detail__tag">Queso
+                rallado</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+          <span class="badge">🇨🇴 Caleño</span>
+          <div class="card__img">
+            <img
+              src="images/cholado.jpg"
+              alt="Cholado" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Cholado</h3>
+            <p class="card__desc">Frutas (maracuyá, lulo, papaya, mango, banano, fresa, uvas, manzana verde), jarabe y
+              galletas Capri.</p>
+            <p class="card__price">$10.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Directo del Valle del Cauca a tu mesa. Un vaso rebosante de frutas frescas picadas —
+              maracuyá, lulo, papaya, mango, banano, fresa, uvas y manzana verde — bañadas en jarabe dulce y acompañadas
+              de galletas Capri. Refrescante, frutal y muy nuestro.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Maracuyá</span><span
+                class="detail__tag">Lulo</span><span class="detail__tag">Papaya</span><span
+                class="detail__tag">Mango</span><span class="detail__tag">Banano</span><span
+                class="detail__tag">Fresa</span><span class="detail__tag">Uvas</span><span class="detail__tag">Manzana
+                verde</span><span class="detail__tag">Jarabe</span><span class="detail__tag">Galletas Capri</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BEBIDAS & REFRESCOS
+       ============================================ -->
+  <section class="section" id="bebidas">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__icon">🍹</span>
+        <h2 class="section__title">Bebidas & Refrescos</h2>
+        <p class="section__subtitle">Para refrescarte en cualquier momento</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/lulada.jpg"
+              alt="Lulada" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Lulada</h3>
+            <p class="card__desc">Lulo y lechera, con borde escarchado y rodaja de limón. Adición de helado +$3.500.</p>
+            <p class="card__price">$10.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Bebida refrescante vallecaucana. Lulo natural mezclado con lechera, servido en copa
+              con borde escarchado y rodaja de limón. Ácida, cremosa y perfecta para el calor. ¿La quieres aún mejor?
+              Agrégale una bola de helado.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Lulo natural</span><span
+                class="detail__tag">Lechera</span><span class="detail__tag">Borde escarchado</span><span
+                class="detail__tag">Rodaja de limón</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Yogurt de Maracuyá</span><span
+                class="detail__flavor">Verano Tropical</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/limonada_cerezada.jpg"
+              alt="Limonada Cerezada" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Limonada Cerezada</h3>
+            <p class="card__desc">Refrescante limonada con cereza, decorada con rodaja de limón y cereza.</p>
+            <p class="card__price">$10.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Nuestra limonada artesanal con un twist de cereza que le da ese color rojo vibrante
+              e irresistible. Refrescante, dulce y perfecta para cualquier momento. Decorada con rodaja de limón y
+              cereza.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Limón natural</span><span
+                class="detail__tag">Jarabe de cereza</span><span class="detail__tag">Rodaja de limón</span><span
+                class="detail__tag">Cereza</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/raspado.jpg"
+              alt="Raspado" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Raspado</h3>
+            <p class="card__desc">Hielo raspado con jarabe de frutas. ¡Refrescante y clásico!</p>
+            <p class="card__price">$5.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">El clásico de la calle, ahora en Lamy's. Hielo finamente raspado bañado en jarabe de
+              frutas con colores vibrantes. Simple, refrescante y nostálgico. ¡El favorito para los días de calor!</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Hielo raspado</span><span
+                class="detail__tag">Jarabe de frutas</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/salpihelado.jpg"
+              alt="Salpihelado" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Salpihelado</h3>
+            <p class="card__desc">Salpicón con helado o sin helado. ¡Frutas frescas y sabor colombiano!</p>
+            <ul class="card__price"><li>Con helado $8.000</li><li>Sin helado $5.000</li></ul>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Nuestro salpicón de frutas frescas con la opción de coronarlo con una bola de
+              helado. Frutas picadas en jugo, lleno de sabor colombiano. Disponible con o sin helado.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Mix de frutas frescas</span><span
+                class="detail__tag">Jugo natural</span><span class="detail__tag">Helado (opcional)</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Verano Tropical</span><span
+                class="detail__flavor">Vainilla</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+        <article class="card">
+
+          <div class="card__img">
+            <img
+              src="images/malteada_tradicional.jpg"
+              alt="Malteada Tradicional" loading="lazy">
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">Malteada Tradicional</h3>
+            <p class="card__desc">Sabores: vainilla, fresa, chocolate o brownie. Con chantilly y salsa.</p>
+            <p class="card__price">$12.000</p>
+          </div>
+
+          <div class="card__detail">
+            <p class="detail__text">Cremosa, espesa y llena de sabor. Nuestra malteada está hecha con helado de primera calidad y
+              leche, servida en copa clásica con chantilly, salsa y una galleta Oreo de decoración. Elige tu sabor
+              favorito.</p>
+            <div class="detail__section-title">📋 Ingredientes</div>
+            <div class="detail__ingredients"><span class="detail__tag">Helado de primera calidad</span><span
+                class="detail__tag">Leche</span><span class="detail__tag">Chantilly</span><span
+                class="detail__tag">Salsa</span><span class="detail__tag">Galleta Oreo</span></div>
+            <div class="detail__section-title">🍦 Sabores recomendados</div>
+            <div class="detail__flavors"><span class="detail__flavor">Vainilla</span><span
+                class="detail__flavor">Fresa</span><span class="detail__flavor">Chocolate</span><span
+                class="detail__flavor">Brownie</span></div>
+          </div>
+          <span class="card__expand-hint">Toca para ver más <span>▼</span></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONOS, VASOS, JUGOS, BATIDOS (text-only)
+       ============================================ -->
+  <section class="section" id="conos">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__icon">🍦</span>
+        <h2 class="section__title">Conos, Vasos & Bebidas</h2>
+      </div>
+
+      <!-- Conos & Vasos -->
+      <div class="text-menu">
+        <div class="text-menu__cols">
+          <div>
+            <h3 class="text-menu__col-title">🍦 Conos</h3>
+            <div class="text-menu__row"><span>Cono tradicional (1 sabor)</span><span
+                class="text-menu__dots"></span><span class="text-menu__price">$3.500</span></div>
+            <div class="text-menu__row"><span>Cucurucho (1 sabor)</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$4.500</span></div>
+            <div class="text-menu__row"><span>Cucurucho (2 sabores)</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$6.500</span></div>
+          </div>
+          <div>
+            <h3 class="text-menu__col-title">🥛 Vasos</h3>
+            <div class="text-menu__row"><span>Vaso 1 sabor</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$3.000</span></div>
+            <div class="text-menu__row"><span>Vaso 2 sabores</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$5.500</span></div>
+            <div class="text-menu__row"><span>Vaso 3 sabores</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$9.500</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jugos & Batidos -->
+      <div class="text-menu">
+        <div class="text-menu__cols">
+          <div>
+            <h3 class="text-menu__col-title">🧃 Jugos Naturales en Agua</h3>
+            <div class="text-menu__row"><span>Mango Copa</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$5.000</span></div>
+            <div class="text-menu__row"><span>Mora</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$5.000</span></div>
+          </div>
+          <div>
+            <h3 class="text-menu__col-title">🥤 Batidos</h3>
+            <div class="text-menu__row"><span>Mango</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$7.000</span></div>
+            <div class="text-menu__row"><span>Mora</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$7.000</span></div>
+            <div class="text-menu__row"><span>Fresa</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$8.000</span></div>
+            <div class="text-menu__row"><span>Banano</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$7.000</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ADICIONALES
+       ============================================ -->
+  <section class="section" id="adicionales">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__icon">➕</span>
+        <h2 class="section__title">Adicionales</h2>
+        <p class="section__subtitle">Personaliza tu experiencia</p>
+      </div>
+      <div class="text-menu">
+        <div class="text-menu__cols">
+          <div>
+            <div class="text-menu__row"><span>Bola de helado</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$3.500</span></div>
+            <div class="text-menu__row"><span>Crema de la casa</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$4.500</span></div>
+            <div class="text-menu__row"><span>Queso</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$4.500</span></div>
+            <div class="text-menu__row"><span>Salsas</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$2.500</span></div>
+            <div class="text-menu__row"><span>Lechera</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$2.500</span></div>
+          </div>
+          <div>
+            <div class="text-menu__row"><span>Gomitas</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$2.500</span></div>
+            <div class="text-menu__row"><span>Chips de chocolate</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$2.500</span></div>
+            <div class="text-menu__row"><span>M&amp;M's</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$3.500</span></div>
+            <div class="text-menu__row"><span>Barquillo unidad</span><span class="text-menu__dots"></span><span
+                class="text-menu__price">$800</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       TESTIMONIALS / RESEÑAS
+       ============================================ -->
+  <section class="testimonials" id="reviews">
+    <h2 class="testimonials__title">Lo que dicen nuestros clientes</h2>
+    <p class="testimonials__sub">Miles de sonrisas en cada visita</p>
+    <div class="testimonials__grid">
+      <div class="tcard">
+        <div class="tcard__stars">★★★★★</div>
+        <p class="tcard__text">"La mejor heladería de Palmira, sin duda. La Copa Explosión de Chocolate es increíble, y
+          el Wafflebono de pan de bono es algo que no encuentras en ningún otro lado."</p>
+        <div class="tcard__author">— Valentina R.</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard__stars">★★★★★</div>
+        <p class="tcard__text">"Llevé a mis hijos y quedaron fascinados con la Tortuga y el Cerdito. La presentación es
+          hermosa y el sabor es espectacular. ¡Repetimos cada fin de semana!"</p>
+        <div class="tcard__author">— Carlos M.</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard__stars">★★★★★</div>
+        <p class="tcard__text">"La ensalada de frutas es la más completa que he probado. Las frutas súper frescas, la
+          crema de la casa es deliciosa y el precio es muy justo. 100% recomendado."</p>
+        <div class="tcard__author">— Andrea P.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       INSTAGRAM CTA
+       ============================================ -->
+  <section class="ig-cta">
+    <h2 class="ig-cta__title">📸 Síguenos en Instagram</h2>
+    <p class="ig-cta__text">Entérate de promociones, nuevos sabores y contenido delicioso</p>
+    <a href="https://instagram.com/lamysheladeria" target="_blank" class="ig-cta__btn">
+      Seguir @lamysheladeria
+    </a>
+  </section>
+
+  <!-- ============================================
+       LOCATION & HOURS
+       ============================================ -->
+  <section class="location" id="ubicacion">
+    <div class="location__inner">
+      <div class="location__map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.5!2d-76.3036!3d3.5395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCalle+67A+%2325-71+Palmira!5e0!3m2!1ses!2sco!4v1"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación Lamy's Heladería">
+        </iframe>
+      </div>
+      <div class="location__info">
+        <h2 class="location__title">Visítanos</h2>
+        <div class="location__item">
+          <div class="location__icon">📍</div>
+          <div>
+            <div class="location__label">Dirección</div>
+            <div class="location__value">Calle 67A #25-71, Barrio Alameda<br>Palmira, Valle del Cauca</div>
+          </div>
+        </div>
+        <div class="location__item">
+          <div class="location__icon">📱</div>
+          <div>
+            <div class="location__label">Teléfono / WhatsApp</div>
+            <div class="location__value">+57 310 439 0198</div>
+          </div>
+        </div>
+        <div class="location__item">
+          <div class="location__icon">🕐</div>
+          <div>
+            <div class="location__label">Horario</div>
+            <div class="location__value">Lunes a Sábado: 11:00 AM - 9:00 PM<br>Domingos: 12:00 PM - 8:00 PM</div>
+          </div>
+        </div>
+        <div class="location__item">
+          <div class="location__icon">📸</div>
+          <div>
+            <div class="location__label">Instagram</div>
+            <div class="location__value">@lamysheladeria</div>
+          </div>
+        </div>
+        <a href="https://wa.me/573104390198?text=Hola%20Lamy%27s!%20Quiero%20hacer%20un%20pedido" target="_blank"
+          class="location__wa-btn">
+          💬 Pedir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer">
+    <img
+      src="images/lamy_s_heladeria.png"
+      alt="Lamy's Heladería" class="footer__logo">
+    <h2 class="footer__slogan">¡Date un gusto!</h2>
+    <div class="footer__divider"></div>
+    <div class="footer__info">
+      📍 <strong>Calle 67A #25-71</strong>, Barrio Alameda, Palmira<br>
+      📱 <strong>+57 310 439 0198</strong>
+    </div>
+    <div class="footer__social">
+      <a href="https://instagram.com/lamysheladeria" target="_blank">📸 @lamysheladeria</a>
+      <a href="https://wa.me/573104390198" target="_blank">💬 WhatsApp</a>
+    </div>
+    <p class="footer__copy">© 2026 Lamy's Heladería · Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Smooth scroll for nav pills -->
+  <script>
+    document.querySelectorAll('.nav__pill, .topbar__links a').forEach(pill => {
+      pill.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(pill.getAttribute('href'));
+        if (target) {
+          const navH = (document.querySelector('.nav')?.offsetHeight || 0) + 60;
+          const y = target.getBoundingClientRect().top + window.scrollY - navH - 10;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/573104390198?text=Hola%20Lamy%27s!%20Quiero%20hacer%20un%20pedido" target="_blank"
+    class="wa-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
+
+  <!-- Card expand/collapse -->
+  <script>
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', function (e) {
+        // Don't expand if clicking a link
+        if (e.target.tagName === 'A') return;
+        this.classList.toggle('expanded');
+      });
+    });
+  </script>
+
+  <!-- ============================================== -->
+  <!-- INTERACTIVE ENHANCEMENTS SCRIPT               -->
+  <!-- ============================================== -->
+  <script>
+  (function() {
+    'use strict';
+
+    // ========================================
+    // 1. SCROLL-REVEAL (IntersectionObserver)
+    // ========================================
+    function initScrollReveal() {
+      // Add reveal class to elements
+      document.querySelectorAll('.card').forEach(card => card.classList.add('reveal'));
+      document.querySelectorAll('.section__header').forEach(el => el.classList.add('reveal'));
+      document.querySelectorAll('.text-menu').forEach(el => el.classList.add('reveal'));
+      document.querySelectorAll('.tcard').forEach(el => el.classList.add('reveal'));
+      document.querySelectorAll('.about__feat').forEach(el => el.classList.add('reveal-scale'));
+      document.querySelectorAll('.location__inner').forEach(el => el.classList.add('reveal'));
+      document.querySelectorAll('.ig-cta').forEach(el => el.classList.add('reveal'));
+      document.querySelectorAll('.menu-divider').forEach(el => el.classList.add('reveal'));
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Stagger children within grids
+            const parent = entry.target.closest('.grid');
+            if (parent && entry.target.classList.contains('card')) {
+              const cards = Array.from(parent.querySelectorAll('.card'));
+              const idx = cards.indexOf(entry.target);
+              entry.target.style.transitionDelay = (idx * 0.08) + 's';
+            }
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // ========================================
+    // 2. PARALLAX HERO
+    // ========================================
+    function initParallax() {
+      const heroBg = document.querySelector('.hero__bg');
+      const hero = document.querySelector('.hero');
+      if (!heroBg || !hero) return;
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const scrolled = window.scrollY;
+            const heroH = hero.offsetHeight;
+            if (scrolled <= heroH) {
+              heroBg.style.transform = 'translateY(' + (scrolled * 0.35) + 'px) scale(1.1)';
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Initial scale to prevent gap
+      heroBg.style.transform = 'scale(1.1)';
+    }
+
+    // ========================================
+    // 3. ACTIVE NAV PILL TRACKING
+    // ========================================
+    function initActiveNav() {
+      const pills = document.querySelectorAll('.nav__pill');
+      const sections = [];
+
+      pills.forEach(pill => {
+        const href = pill.getAttribute('href');
+        if (href) {
+          const section = document.querySelector(href);
+          if (section) sections.push({ pill, section });
+        }
+      });
+
+      if (sections.length === 0) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            pills.forEach(p => p.classList.remove('active'));
+            const match = sections.find(s => s.section === entry.target);
+            if (match) match.pill.classList.add('active');
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '-80px 0px -50% 0px'
+      });
+
+      sections.forEach(s => observer.observe(s.section));
+    }
+
+    // ========================================
+    // 4. 3D CARD TILT EFFECT
+    // ========================================
+    function initCardTilt() {
+      if (window.matchMedia('(hover: none)').matches) return; // Skip on touch devices
+
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -5;
+          const rotateY = ((x - centerX) / centerX) * 5;
+
+          card.style.transform = 'translateY(-6px) perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          card.style.transition = 'transform 0.4s ease';
+          setTimeout(() => { card.style.transition = ''; }, 400);
+        });
+      });
+    }
+
+    // ========================================
+    // 5. FLOATING PARTICLES / SPRINKLES
+    // ========================================
+    function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let particles = [];
+      const colors = ['#C75B7A', '#E8A0B5', '#D4A46A', '#E8C99B', '#B8967A', '#FFF0F3'];
+      const count = Math.min(50, Math.floor(window.innerWidth / 25));
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      function createParticle() {
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 4 + 1.5,
+          speedX: (Math.random() - 0.5) * 0.3,
+          speedY: (Math.random() - 0.5) * 0.3 - 0.15,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          opacity: Math.random() * 0.25 + 0.05,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 1.5,
+          shape: Math.random() > 0.5 ? 'circle' : 'rect'
+        };
+      }
+
+      function init() {
+        resize();
+        particles = [];
+        for (let i = 0; i < count; i++) {
+          particles.push(createParticle());
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.rotation += p.rotSpeed;
+
+          // Wrap around
+          if (p.x < -10) p.x = canvas.width + 10;
+          if (p.x > canvas.width + 10) p.x = -10;
+          if (p.y < -10) p.y = canvas.height + 10;
+          if (p.y > canvas.height + 10) p.y = -10;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation * Math.PI / 180);
+          ctx.globalAlpha = p.opacity;
+          ctx.fillStyle = p.color;
+
+          if (p.shape === 'circle') {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.fillRect(-p.size, -p.size * 0.4, p.size * 2, p.size * 0.8);
+          }
+
+          ctx.restore();
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      init();
+      animate();
+    }
+
+    // ========================================
+    // 6. PRICE COUNTER ANIMATION
+    // ========================================
+    function initPriceCounters() {
+      const priceEls = document.querySelectorAll('.card__price, .text-menu__price');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animatePrice(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      priceEls.forEach(el => {
+        el.dataset.originalText = el.textContent;
+        observer.observe(el);
+      });
+
+      function animatePrice(el) {
+        const text = el.dataset.originalText;
+        // Extract numeric value(s) from price text
+        const match = text.match(/([\d.,]+)/);
+        if (!match) return;
+
+        const numStr = match[1];
+        const num = parseFloat(numStr.replace(/\./g, '').replace(',', '.'));
+        if (isNaN(num)) return;
+
+        const duration = 800;
+        const start = performance.now();
+        const prefix = text.substring(0, text.indexOf(numStr));
+        const suffix = text.substring(text.indexOf(numStr) + numStr.length);
+        const hasDecimals = numStr.includes(',') && numStr.split(',')[1];
+        const useThousandDot = numStr.includes('.');
+
+        function step(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+          const current = num * eased;
+
+          let formatted;
+          if (useThousandDot) {
+            formatted = Math.round(current).toLocaleString('es-CO');
+          } else if (hasDecimals) {
+            formatted = current.toFixed(hasDecimals.length).replace('.', ',');
+          } else {
+            formatted = Math.round(current).toString();
+          }
+
+          el.textContent = prefix + formatted + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = text; // Ensure exact original
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+    }
+
+    // ========================================
+    // 7. IMAGE FADE-IN
+    // ========================================
+    function initImageFadeIn() {
+      document.querySelectorAll('.card__img img').forEach(img => {
+        if (img.complete) {
+          img.classList.add('loaded');
+        } else {
+          img.addEventListener('load', () => img.classList.add('loaded'));
+        }
+      });
+    }
+
+    // ========================================
+    // 8. WHATSAPP TOOLTIP
+    // ========================================
+    function initWaTooltip() {
+      const tooltip = document.getElementById('wa-tooltip');
+      if (!tooltip) return;
+
+      setTimeout(() => {
+        tooltip.classList.add('visible');
+        setTimeout(() => {
+          tooltip.classList.remove('visible');
+        }, 4000);
+      }, 3000);
+
+      // Show again on hover near WA button
+      const waBtn = document.querySelector('.wa-float');
+      if (waBtn) {
+        waBtn.addEventListener('mouseenter', () => tooltip.classList.add('visible'));
+        waBtn.addEventListener('mouseleave', () => {
+          setTimeout(() => tooltip.classList.remove('visible'), 1000);
+        });
+      }
+    }
+
+    // ========================================
+    // 9. TESTIMONIALS AUTO-SCROLL (mobile)
+    // ========================================
+    function initTestimonialsCarousel() {
+      if (window.innerWidth > 768) return;
+
+      const grid = document.querySelector('.testimonials__grid');
+      if (!grid) return;
+
+      let currentIndex = 0;
+      const cards = grid.querySelectorAll('.tcard');
+      if (cards.length <= 1) return;
+
+      // Auto-scrolling causes unwanted page jumps on mobile. Disabled by default.
+      /*
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % cards.length;
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 16; // estimating the gap
+        grid.scrollTo({
+          left: currentIndex * (cardWidth + gap),
+          behavior: 'smooth'
+        });
+      }, 4000);
+      */
+    }
+
+    // ========================================
+    // 10. SMOOTH SCROLL PROGRESS INDICATOR
+    // ========================================
+    function initScrollProgress() {
+      const bar = document.createElement('div');
+      bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--pink),var(--gold));z-index:999;transition:width 0.1s linear;width:0;pointer-events:none;';
+      document.body.appendChild(bar);
+
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = progress + '%';
+      }, { passive: true });
+    }
+
+    // ========================================
+    // 11. SPLASH SCREEN
+    // ========================================
+    function initSplash() {
+      const splash = document.getElementById('splash');
+      if (!splash) return;
+
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          splash.classList.add('hidden');
+          // Remove from DOM after animation
+          setTimeout(() => splash.remove(), 700);
+        }, 1600);
+      });
+    }
+
+    // ========================================
+    // 12. DARK MODE TOGGLE
+    // ========================================
+    function initDarkMode() {
+      const btn = document.getElementById('dark-toggle');
+      if (!btn) return;
+
+      // Check saved preference
+      const saved = localStorage.getItem('lamys-dark-mode');
+      if (saved === 'true') {
+        document.body.classList.add('dark-mode');
+        btn.textContent = '☀️';
+      }
+
+      btn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        btn.textContent = isDark ? '☀️' : '🌙';
+        localStorage.setItem('lamys-dark-mode', isDark);
+
+        // Fun spin animation on click
+        btn.style.transform = 'scale(1.1) rotate(360deg)';
+        setTimeout(() => { btn.style.transform = ''; }, 400);
+      });
+    }
+
+    // ========================================
+    // 13. IMAGE LIGHTBOX
+    // ========================================
+    function initLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox) return;
+
+      const lbImg = lightbox.querySelector('.lightbox__img');
+      const lbCaption = lightbox.querySelector('.lightbox__caption');
+      const lbClose = lightbox.querySelector('.lightbox__close');
+
+      function openLightbox(imgSrc, caption) {
+        lbImg.src = imgSrc;
+        lbCaption.textContent = caption || '';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => { lbImg.src = ''; }, 400);
+      }
+
+      // Attach to all card images
+      document.querySelectorAll('.card__img img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = img.closest('.card');
+          const name = card ? card.querySelector('.card__name') : null;
+          openLightbox(img.src, name ? name.textContent : '');
+        });
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    }
+
+    // ========================================
+    // 14. SCROLL TO TOP BUTTON
+    // ========================================
+    function initScrollTop() {
+      const btn = document.getElementById('scroll-top');
+      if (!btn) return;
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 600) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // ========================================
+    // 15. CARD SHINE EFFECT
+    // ========================================
+    function initCardShine() {
+      document.querySelectorAll('.card').forEach(card => {
+        const shine = document.createElement('div');
+        shine.classList.add('card__shine');
+        card.appendChild(shine);
+      });
+    }
+
+    // ========================================
+    // 16. HERO TYPEWRITER EFFECT
+    // ========================================
+    function initTypewriter() {
+      const subtitle = document.querySelector('.hero__subtitle');
+      if (!subtitle) return;
+
+      const phrases = [
+        'Helados de primera calidad con amor',
+        'Waffles, copas y mucho más',
+        'El mejor sabor de Palmira',
+        'Frutas frescas del Valle'
+      ];
+
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      // Save original and replace with typewriter span
+      subtitle.innerHTML = '<span class="hero__typewriter" id="typewriter-text"></span>';
+      const tw = document.getElementById('typewriter-text');
+
+      function type() {
+        const current = phrases[phraseIndex];
+
+        if (isDeleting) {
+          tw.textContent = current.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          tw.textContent = current.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        let delay = isDeleting ? 40 : 70;
+
+        if (!isDeleting && charIndex === current.length) {
+          delay = 2500; // Pause at end
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          delay = 400;
+        }
+
+        setTimeout(type, delay);
+      }
+
+      // Start after splash
+      setTimeout(type, 2000);
+    }
+
+    // ========================================
+    // 17. CARD STAGGER ON REVEAL
+    // ========================================
+    function initCardStagger() {
+      document.querySelectorAll('.grid').forEach(grid => {
+        const cards = grid.querySelectorAll('.card');
+        cards.forEach((card, i) => {
+          card.style.setProperty('--stagger', i);
+        });
+      });
+    }
+
+    // ========================================
+    // INIT ALL
+    // ========================================
+    document.addEventListener('DOMContentLoaded', () => {
+      initSplash();
+      initDarkMode();
+      initScrollReveal();
+      initParallax();
+      initActiveNav();
+      initCardTilt();
+      initParticles();
+      initPriceCounters();
+      initImageFadeIn();
+      initWaTooltip();
+      initTestimonialsCarousel();
+      initScrollProgress();
+      initLightbox();
+      initScrollTop();
+      initCardShine();
+      initTypewriter();
+      initCardStagger();
+    });
+
+  })();
+  </script>
+</body>
+
+</html>
